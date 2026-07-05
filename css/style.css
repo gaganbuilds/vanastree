@@ -301,7 +301,7 @@ body::after {
 .main-content h1.page-title {
   font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--maroon-heading);
   margin-bottom: 14px;
 }
 
@@ -694,7 +694,7 @@ button:focus {
 .vt-card__name {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--vt-text);
+  color: var(--maroon-heading);
   margin: 0 0 0.25rem;
   line-height: 1.3;
 }
@@ -798,7 +798,7 @@ button:focus {
     grid-template-columns: 260px 1fr;
     gap: 2rem;
     align-items: start;
-    padding: 2.25rem 0;
+    padding: 1.5rem 0; /* Reduced from 2.25rem to eliminate excessive spacing */
   }
  
   .vt-pub__item + .vt-pub__item {
@@ -816,12 +816,13 @@ button:focus {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-top: 0; /* Guarantees text aligns perfectly with the top edge of the image */
   }
  
   .vt-pub__title {
     font-size: 1.35rem;
     font-weight: 700;
-    color: var(--vt-text);
+    color: var(--maroon-heading);
     margin: 0;
     line-height: 1.35;
   }
