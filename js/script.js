@@ -9,12 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Close mobile nav if a link is clicked
+// Close mobile nav if a link is clicked
   document.querySelectorAll(".nav-list a").forEach(function (link) {
     link.addEventListener("click", function () {
       if (navList.classList.contains("open")) {
         navList.classList.remove("open");
       }
     });
-  });
 });
