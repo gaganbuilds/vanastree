@@ -34,15 +34,20 @@ html {
 }
 
 body {
-  margin-left:15%;
-  /* margin-right:10%; */
-  width:1000px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--terracotta);
   color: var(--text-main);
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+img, video, iframe, svg, canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 
@@ -104,13 +109,50 @@ body::after {
   padding: 36px 20px 60px;
 }
 
+@media (max-width: 768px) {
+  .page-wrap {
+    padding: 16px 12px 40px;
+  }
+}
+#vanastree-about-section {
+  overflow: hidden; /* clearfix so the block wraps its floated child properly */
+}
+
+.vanastree-float-img {
+  float: right;
+  width: 280px;
+  max-width: 40%;
+  height: auto;
+  margin: 4px 0 16px 24px;
+  border-radius: 4px;
+}
+
+.vanastree-intro-text {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.vanastree-seed-text {
+  clear: both;
+  text-align: left;
+}
+
+/* Mobile: stack image above text instead of squeezing narrow */
+@media (max-width: 600px) {
+  .vanastree-float-img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 16px 0;
+  }
+}
 /* ---------------------------------------------------------------------- */
 /* Hero banner                                                            */
 /* ---------------------------------------------------------------------- */
 .hero-banner {
   position: relative;
   width: 100%;
-  height: 290px;
+  height: clamp(140px, 30vw, 290px);
   border-radius: var(--radius);
   overflow: hidden;
   background: linear-gradient(120deg, #170902 0%, #8a5a35 35%, #c9c7c3 60%, #3a2a1a 100%);
@@ -150,29 +192,19 @@ body::after {
 }
 
 .hero-banner .logo-overlay .logo-icon {
-  font-size: 1.9rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.9rem);
   line-height: 1;
 }
 
 .hero-banner .logo-overlay .logo-text {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 2.1rem;
+  font-size: clamp(1.2rem, 4vw, 2.1rem);
   font-style: italic;
   letter-spacing: 0.5px;
 }
 
 @media (max-width: 600px) {
-  .hero-banner {
-    height: 180px;
-  }
-
-  .hero-banner .logo-overlay .logo-text {
-    font-size: 1.4rem;
-  }
-
-  .hero-banner .logo-overlay .logo-icon {
-    font-size: 1.3rem;
-  }
+  /* Height and font sizes are now handled by clamp(), keeping media query for any potential future overrides */
 }
 
 /* ---------------------------------------------------------------------- */
@@ -286,7 +318,7 @@ body::after {
 
 /* Typography ------------------------------------------------------------ */
 .main-content h1.page-title {
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 14px;
@@ -294,7 +326,7 @@ body::after {
 
 .main-content h2.section-heading {
   color: var(--maroon-heading);
-  font-size: 1.15rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
   font-weight: 700;
   margin: 22px 0 8px;
 }
@@ -437,6 +469,14 @@ body::after {
   border-collapse: collapse;
   margin: 10px 0 22px;
   font-size: 0.92rem;
+}
+
+@media (max-width: 576px) {
+  .seed-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
 
 .seed-table th,
@@ -739,10 +779,11 @@ button:focus {
     }
   }
  
-  /* ---- Very small mobile: shrink further, still 2 columns ---- */
+  /* ---- Very small mobile: stack into 1 column for readability ---- */
   @media (max-width: 360px) {
     .vt-catalogue__grid {
-      gap: 0.5rem;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
     .vt-card__footer {
       flex-direction: column;
